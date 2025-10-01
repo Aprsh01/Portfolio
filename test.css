@@ -1,0 +1,318 @@
+body {
+  background: black;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  color: white;
+  /* Removed overflow-x: hidden to fix potential layout issues on mobile */
+}
+
+/* NEW HEADER STYLES */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 40px;
+  background: #000; /* Black background for header */
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.logo {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.social-buttons {
+  display: flex;
+  gap: 15px; /* Increased gap slightly */
+}
+
+/* NEW NEON BUTTON STYLES */
+.neon-btn {
+  /* Overriding default button styles for the neon look */
+  padding: 8px 12px;
+  font-size: 14px;
+  border-radius: 12px;
+  border: none;
+  background-color: transparent; /* Needed for gradient to show */
+  color: white;
+  font-weight: bold;
+  
+  /* NEON EFFECT STYLES */
+  /* Gradient: Bright Green to Yellow */
+  background: linear-gradient(90deg, #99ff00, #ffff00);
+  background-size: 200% 100%;
+  
+  /* Glow/Shadow matching the image */
+  box-shadow: 0 0 10px #99ff00, 0 0 20px #ffff00;
+  
+  /* Animation for a subtle pulse/movement effect */
+  animation: neonGlow 1.5s ease-in-out infinite alternate;
+  
+  /* Text and Icon alignment */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: transform 0.2s ease-in-out;
+}
+
+.neon-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px #99ff00, 0 0 30px #ffff00;
+}
+
+/* Style for the SVG icons inside the neon buttons */
+.neon-btn svg {
+  width: 20px;
+  height: 20px;
+  fill: black; /* Changed to black to contrast with the bright background */
+}
+
+/* Animation for a subtle pulsing glow */
+@keyframes neonGlow {
+  0% { 
+    box-shadow: 0 0 5px #99ff00, 0 0 10px #ffff00;
+  }
+  100% { 
+    box-shadow: 0 0 15px #99ff00, 0 0 25px #ffff00;
+  }
+}
+
+/* --- HOMEPAGE LAYOUT --- */
+
+.HomePage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  gap: 80px;
+  min-height: calc(100vh - 60px); /* Adjusting min-height for the header */
+  flex-wrap: wrap;
+}
+
+/* LeftSide (Image) adjustments for flow (removed fixed positioning) */
+.LeftSide {
+  position: relative;
+  width: 30%;
+  max-width: 350px;
+  border-radius: 30px;
+  overflow: hidden;
+  z-index: 10;
+  margin: 0; /* Removing fixed margins */
+}
+
+/* Retained the original glowing border effect for the image */
+.LeftSide::before {
+  content: '';
+  position: absolute;
+  top: -6px;
+  left: -6px;
+  right: -6px;
+  bottom: -6px;
+  border-radius: 36px;
+  background: linear-gradient(
+    270deg,
+    #ff0000,
+    #ff7f00,
+    #ffff00,
+    #00ff00,
+    #0000ff,
+    #4b0082,
+    #8f00ff
+  );
+  background-size: 1200% 1200%;
+  animation: gradientMove 4s linear infinite;
+  z-index: 0;
+  box-shadow: 0 0 20px rgba(255,255,255,0.2);
+}
+
+.LeftSide img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 30px;
+  position: relative;
+  z-index: 1;
+}
+
+.RightSide {
+  margin-left: 0; /* Removing fixed margin offset */
+  flex: 1;
+  display: flex;
+  padding-top: 20px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-width: 280px;
+}
+
+.Intro-Page {
+  font-size: clamp(18px, 3vw, 28px);
+  margin: 10px 0;
+  line-height: 1.4;
+}
+
+/* Styles for "My Skills" button (using the original rainbow effect) */
+button {
+  margin-top: 20px;
+  color: white;
+  padding: 12px 28px;
+  font-size: 16px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  background: linear-gradient(
+    270deg,
+    #ff0000,
+    #ff7f00,
+    #ffff00,
+    #00ff00,
+    #0000ff,
+    #4b0082,
+    #8f00ff
+  );
+  background-size: 1200% 1200%;
+  animation: gradientMove 7s linear infinite, pulse 4s ease-in-out infinite;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 30px rgba(255, 255, 255, 0.8);
+}
+
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(0.9); }
+  50% { transform: scale(1.15); }
+}
+
+.snapshot-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  text-align: center;
+}
+
+/* Typing and Snapshot Link styles (using original rainbow effect) */
+.typing {
+  font-size: 15px;
+  color: white;
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 2px solid #fff;
+  width: 0;
+  animation: typing 4s steps(40, end) forwards, blink 0.75s step-end infinite;
+  margin-bottom: 8px;
+}
+
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+@keyframes blink {
+  50% { border-color: transparent }
+}
+
+.snapshot-link {
+  display: inline-block;
+  text-decoration: none;
+  color: white;
+  font-size: 16px;
+  padding: 8px 16px;
+  border-radius: 12px;
+  background: linear-gradient(
+    270deg,
+    #ff0000,
+    #ff7f00,
+    #ffff00,
+    #00ff00,
+    #0000ff,
+    #4b0082,
+    #8f00ff
+  );
+  background-size: 1200% 1200%;
+  animation: gradientMove 7s linear infinite, pulse 4s ease-in-out infinite;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.snapshot-link:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 30px rgba(255, 255, 255, 0.8);
+}
+
+.footer {
+  background: #111;
+  color: white;
+  text-align: center;
+  padding: 20px; /* Corrected padding from 2x 20px */
+  margin-top: 0; /* Corrected margin */
+  border-top: 2px solid rgba(255,255,255,0.1);
+}
+
+.footer h2 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.footer p {
+  margin: 6px 0;
+  font-size: 15px;
+}
+
+.footer a {
+  color: #00ffcc;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.footer a:hover {
+  color: #ff7f00;
+}
+
+
+/* --- Media Query for Mobile/Small Screens --- */
+@media (max-width: 900px) {
+  .HomePage {
+    flex-direction: column;
+    padding: 30px 20px;
+    gap: 40px;
+    min-height: auto;
+  }
+
+  .LeftSide {
+    position: relative;
+    top: 0;
+    left: 0;
+    transform: none;
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
+  }
+
+  .RightSide {
+    margin-left: 0;
+    align-items: center;
+    text-align: center;
+    padding-top: 30px;
+  }
+
+  .header {
+    flex-direction: column;
+    gap: 10px;
+    padding: 15px 20px;
+  }
+}
