@@ -1,0 +1,257 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", Roboto, sans-serif; /* match second snippet */
+  background-color: #000;
+  color: #fff;
+  line-height: 1.7; /* ensures footer spacing looks the same */
+  overflow-x: hidden;
+}
+
+/* Homepage Layout */
+.HomePage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 40px;
+  gap: 80px;
+  min-height: 100vh;
+  flex-wrap: wrap;
+}
+
+.LeftSide {
+  position: fixed;
+  top: 50%;
+  left: 40px;
+  transform: translateY(-50%);
+  width: 30%;
+  max-width: 350px;
+  border-radius: 30px;
+  overflow: visible;
+  z-index: 10;
+}
+
+.LeftSide img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 30px;
+  position: relative;
+  z-index: 1;
+}
+
+.LeftSide::before {
+  content: '';
+  position: absolute;
+  top: -6px;
+  left: -6px;
+  right: -6px;
+  bottom: -6px;
+  border-radius: 36px;
+  background: linear-gradient(
+    270deg,
+    #ff0000,
+    #ff7f00,
+    #ffff00,
+    #00ff00,
+    #0000ff,
+    #4b0082,
+    #8f00ff
+  );
+  background-size: 1200% 1200%;
+  animation: gradientMove 4s linear infinite;
+  z-index: 0;
+  box-shadow: 0 0 20px rgba(255,255,255,0.2);
+}
+
+.RightSide {
+  margin-left: calc(30% + 100px); 
+  flex: 1;
+  display: flex;
+  padding-top: 0; 
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: -70px; 
+  text-align: left;
+  min-width: 280px;
+}
+
+.Intro-Page {
+  font-size: clamp(18px, 3vw, 28px); 
+  margin: 10px 0;
+  line-height: 1.4;
+}
+
+.button-grad {
+  margin-top: 20px;
+  color: white;
+  padding: 12px 28px;
+  font-size: 16px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  background: linear-gradient(
+    270deg,
+    #ff0000,
+    #ff7f00,
+    #ffff00,
+    #00ff00,
+    #0000ff,
+    #4b0082,
+    #8f00ff
+  );
+  background-size: 1200% 1200%;
+  animation: gradientMove 7s linear infinite, pulse 4s ease-in-out infinite;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.button-grad:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+}
+
+/* Animations */
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(0.9); }
+  50% { transform: scale(1.15); }
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .HomePage {
+    flex-direction: column;
+    padding: 30px 20px;
+    gap: 40px;
+  }
+
+  .LeftSide {
+    position: relative;
+    top: 0;
+    left: 0;
+    transform: none;
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
+  }
+
+  .RightSide {
+    margin-left: 0;
+    align-items: center;
+    text-align: center;
+    padding-top: 10px;
+    margin-top: 0; 
+  }
+}
+
+/* Typing + Snapshot */
+.snapshot-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  text-align: center;
+}
+
+.typing {
+  font-size: 15px;
+  color: white;
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 2px solid #fff;
+  width: 0;
+  animation: typing 4s steps(40, end) forwards, blink 0.75s step-end infinite;
+  margin-bottom: 8px;
+}
+
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+@keyframes blink {
+  50% { border-color: transparent }
+}
+
+.snapshot-link {
+  display: inline-block;
+  text-decoration: none;
+  color: white;
+  font-size: 16px;
+  padding: 8px 16px;
+  border-radius: 12px;
+  background: linear-gradient(
+    270deg,
+    #ff0000,
+    #ff7f00,
+    #ffff00,
+    #00ff00,
+    #0000ff,
+    #4b0082,
+    #8f00ff
+  );
+  background-size: 1200% 1200%;
+  animation: gradientMove 7s linear infinite, pulse 4s ease-in-out infinite;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.snapshot-link:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+}
+
+/* Footer (updated to match second snippet exactly) */
+.footer {
+  background: #111;
+  color: white;
+  text-align: center;
+  padding: 20px;
+  margin-top: 40px;
+  border-top: 2px solid rgba(255,255,255,0.1);
+}
+
+.footer h2 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.footer p {
+  margin: 6px 0;
+  font-size: 15px;
+}
+
+.footer a {
+  color: #00ffcc;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer a:hover {
+  color: #ff7f00;
+}
+
+.footer-copy {
+  font-size: 13px;
+  color: #aaa;
+  margin-top: 8px;
+}
+
+/* Transform hover */
+.Trnsform:hover{
+  transform: scale(1.2);
+  transition: 0.5s;
+}
